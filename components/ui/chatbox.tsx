@@ -10,7 +10,7 @@ interface Prop {
 
 const ChatBox = ({ message, error, loading }: Prop) => {
   return (
-    <div className="h-full p-2 w-full flex flex-col gap-2 overflow-y-auto [&::-webkit-scrollbar]:hidden scrollbar bg-transparent ">
+    <div className="h-full py-5 p-2 w-full flex flex-col gap-2 overflow-y-auto [&::-webkit-scrollbar]:hidden scrollbar bg-transparent ">
       {message?.map((msg, index) => (
         <motion.div
           initial={{ opacity: 0, origin: 1, scale: 0, y: 80 }}
