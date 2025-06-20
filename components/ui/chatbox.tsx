@@ -1,5 +1,6 @@
 import { Message } from "../Layout/Main";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 
 interface Prop {
@@ -9,8 +10,17 @@ interface Prop {
 }
 
 const ChatBox = ({ message, error, loading }: Prop) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+    }
+  }, [message]);
   return (
-    <div className="h-full py-5 p-2 w-full flex flex-col gap-2 overflow-y-auto [&::-webkit-scrollbar]:hidden scrollbar bg-transparent ">
+    <div
+    ref={ref}
+    className="h-full py-5 p-2 w-full flex flex-col gap-2 overflow-y-auto [&::-webkit-scrollbar]:hidden scrollbar bg-transparent ">
       {message?.map((msg, index) => (
         <motion.div
           initial={{ opacity: 0, origin: 1, scale: 0, y: 80 }}
